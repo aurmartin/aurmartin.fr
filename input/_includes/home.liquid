@@ -1,5 +1,7 @@
 ---
 layout: base
+eleventyImport:
+  collections: ["post"]
 ---
 
 <header class="home-title">
@@ -18,3 +20,25 @@ layout: base
 </header>
 
 {{content}}
+
+<h2>Latest posts</h2>
+
+{% assign posts = collections.posts | reverse %}
+
+<ul class="posts-list">
+  {% for post in posts %}
+    <li>
+      <a href="{{ post.url }}">
+        <h3>
+          {{ post.data.title }}
+        </h3>
+        <div class="post-metadata">
+          {{ post.date | date: "%b %d, %Y" }}
+        </div>
+        <p class="post-description">
+          {{ post.data.description }}
+        </p>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
