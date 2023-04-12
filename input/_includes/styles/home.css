@@ -7,7 +7,6 @@
   font-size: 1.5rem;
   font-weight: normal;
   max-width: 600px;
-  margin-top: 1rem 0;
   text-align: center;
   border: none;
   color: var(--gray-400);
@@ -16,7 +15,7 @@
 @media (max-width: 768px) {
   .home-title > h1 {
     font-size: 2rem;
-    line-height: 2rem;
+    line-height: 3rem;
   }
   .home-title > h2 {
     font-size: 1.25rem;
