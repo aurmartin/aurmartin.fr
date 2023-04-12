@@ -1,0 +1,30 @@
+.home-title > h1 {
+  font-size: 2.5rem;
+  color: var(--gray-100);
+}
+
+.home-title > h2 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  max-width: 600px;
+  margin-top: 1rem 0;
+  text-align: center;
+  border: none;
+  color: var(--gray-400);
+}
+
+@media (max-width: 768px) {
+  .home-title > h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+  .home-title > h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+}

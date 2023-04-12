@@ -1,0 +1,41 @@
+.posts-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.posts-list a {
+  text-decoration: none;
+}
+
+.posts-list li {
+  background-color: var(--gray-800);
+  border: 1px solid var(--gray-700);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.posts-list li:hover {
+  border-color: var(--gray-500);
+}
+
+.posts-list h3 {
+  margin: 0;
+}
+
+.post-metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+  color: var(--gray-400);
+  font-size: 0.8rem;
+}
+
+.post-description {
+  margin-top: 0.2rem;
+  font-size: 0.9em;
+  margin-bottom: 0;
+}
