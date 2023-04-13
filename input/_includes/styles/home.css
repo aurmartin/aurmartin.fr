@@ -1,6 +1,5 @@
 .home-title > h1 {
   font-size: 2.5rem;
-  color: var(--gray-100);
 }
 
 .home-title > h2 {
@@ -25,5 +24,10 @@
 
 .links {
   display: flex;
+  color: var(--gray-200);
   gap: 1rem;
+}
+
+.links > a:hover {
+  color: var(--gray-100);
 }
