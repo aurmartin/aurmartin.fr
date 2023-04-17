@@ -4,13 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ '/main.css' | url }}">
-    <title>Aurélien Martin | {{ title }}</title>
-    <!-- add SEO meta tags -->
     <meta name="title" content="{{ title }}">
     <meta name="description" content="{{ description }}">
     <meta name="keywords" content="{{ keywords }}">
     <meta name="author" content="Aurélien Martin">
+
+    <!-- Add favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ '/images/icon.png' | url }}">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="{{ '/images/icon@2x.png' | url }}">
+    <link
+      rel="apple-touch-icon"
+      sizes="96x96"
+      href="{{ '/images/icon@3x.png' | url }}">
+
+    <link rel="stylesheet" href="{{ '/main.css' | url }}">
+    <title>Aurélien Martin | {{ title }}</title>
   </head>
   <body>
     <div class="page">
