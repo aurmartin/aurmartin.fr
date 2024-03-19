@@ -11,6 +11,16 @@ I have experience designing and implementing scalable web applications using a r
 
 Whether working independently or as part of a team, I am committed to delivering maintainable, well-documented code that adheres to best practices and industry standards.
 
+## My Projects
+
+I have worked on a variety of hobbyist projects. You can find some of them on my [GitHub](https://github.com/aurmartin) profile.
+
+The most notable projects I have worked on are:
+- [ExTick](https://github.com/aurmartin/extick): a project management application I'm building to learn more about Phoenix LiveView. You can find the live version of the app [here](https://extick.aurmartin.fr/).
+- [Alien](https://github.com/aurmartin/Alien): a hobbyist operating system written in C and assembly. With this project I learned a lot about low-level programming, memory management, file systems, drivers, etc.
+- [BetterVelovMap](https://github.com/aurmartin/bettervelov): a web application to visualize the availability of bikes and parking spots in the city of Lyon. You can find the live version of the app [here](https://velov.aurmartin.fr/).
+- [tcp-over-udp](https://github.com/aurmartin/tcp-over-udp): a really simple implementation of the TCP protocol over UDP in C.
+
 ## About This Site
 
 This site is inspired by [gwern.net](https://www.gwern.net/) awesome website! I wanted to have a simple and clean website to showcase my projects and blog posts. I also wanted to have a website that I could easily update and maintain. I decided to build it using [11ty](https://www.11ty.dev/), a static site generator, and host it on [Netlify](https://www.netlify.com/).
