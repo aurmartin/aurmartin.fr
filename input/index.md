@@ -7,13 +7,11 @@ keywords: aurelien martin, aurelien, martin, aurelien martin, software engineer,
 
 ## About Me
 
-I have experience designing and implementing scalable web applications using a range of technologies and frameworks, including React, Node.js, and PostgreSQL. My expertise in both front-end and back-end development allows me to tackle complex projects and deliver high-quality solutions.
+I have experience designing and implementing scalable web applications using a range of technologies and frameworks, including Elixir, React, Node.js, and PostgreSQL. My expertise in both front-end and back-end development allows me to tackle complex projects and deliver high-quality solutions.
 
 Whether working independently or as part of a team, I am committed to delivering maintainable, well-documented code that adheres to best practices and industry standards.
 
-Let's build something great together!
-
-## Abous This Site
+## About This Site
 
 This site is inspired by [gwern.net](https://www.gwern.net/) awesome website! I wanted to have a simple and clean website to showcase my projects and blog posts. I also wanted to have a website that I could easily update and maintain. I decided to build it using [11ty](https://www.11ty.dev/), a static site generator, and host it on [Netlify](https://www.netlify.com/).
 
