@@ -31,4 +31,4 @@ For the moment there is not much content on this site. I only wrote a couple of 
 
 ## Contact Me
 
-If you have any questions or would like to work together, feel free to contact me on LinkedIn or send me an email at [aurmartin.fr](mailto:aurmartin.fr).
+If you have any questions or would like to work together, feel free to contact me on LinkedIn or send me an email at [aurmartin@pm.me](mailto:aurmartin@pm.me).
