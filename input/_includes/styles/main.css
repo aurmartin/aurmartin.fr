@@ -138,3 +138,7 @@ code {
   padding: 0.1rem 0.25rem;
   overflow-wrap: break-word;
 }
+
+pre > code {
+  padding: 0;
+}

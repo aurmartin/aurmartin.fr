@@ -133,7 +133,7 @@ end
 
 You should be able to start your Phoenix application using `mix phx.server` and access the form at `http://localhost:4000`.
 
-## Step 3: Building the select component
+## Step 3: The LiveComponent
 
 Now that we have our `EmployeeLive.Index` liveview with a `.simple_form` working properly, we can start building our select component.
 
@@ -256,3 +256,252 @@ The options list will contains elements like this:
 ```
 
 We add `id` attributes to both inputs and the select menu to be able to target them in our JS Hook.
+
+We can already add this component to our `EmployeeLive.Index` liveview. Update the render method using `.live_component` to render our select component: 
+
+```elixir
+def render(assigns) do
+  ~H"""
+  <.header>Create Employee</.header>
+
+  <.simple_form for={@form} id="employee-form" phx-change="validate" phx-submit="save">
+    <.input name="name" label="Name" field={@form[:name]} />
+
+    <.live_component
+      field={@form[:country]}
+      id={@form[:country].id}
+      module={Select}
+      label="Country"
+      options={@countries_options}
+    >
+      <:option :let={country}>
+        <img src={Countries.country_image(country)} class="w-6 h-6 mx-2" />
+        <%= country.text %>
+      </:option>
+    </.live_component>
+
+    <.button type="submit">Save</.button>
+  </.simple_form>
+  """
+end
+```
+
+We pass the `@countries_options` assigns to the select component. This list will be generated in the `mount/3` callback using `update_countries_options/2` function. 
+
+```elixir
+def mount(_params, _session, socket) do
+  socket =
+    socket
+    |> assign(form: to_form(%{}))
+    |> update_countries_options()
+
+  {:ok, socket}
+end
+
+defp update_countries_options(socket, query \\ "") do
+  options =
+    PhoenixLiveviewSelect.Countries.search_contries(query)
+    |> Enum.map(fn country ->
+      Map.merge(country, %{id: country.code, text: country.name})
+    end)
+
+  assign(socket, countries_options: options)
+end
+```
+
+The `update_countries_options/2` function will be used to filter the countries list based on the search query and prepare the options list to be passed to the select component.
+
+We call this function in `mount/3` to initialize the options list. We will also call it later to update the options list based on the user's search query.
+
+You can now start your Phoenix application and see the select component. For the moment, the select component is not interactive: you can't open it or select an option. We will add the JS part in the next step.
+
+## Step 4: The JS Hook: user interactions
+
+[JS Hooks](https://hexdocs.pm/phoenix_live_view/js-interop.html#client-hooks-via-phx-hook) are a feature of Phoenix LiveView that allows you to write custom JavaScript code to create fully interactive components. Of course, you could also use LiveView to make a component interactive, but in some cases, you don't want to have a network overhead on each user interaction. This is the case with a Select component: you don't want to send a request to the server each time the user opens the select or use the keyboard to navigate options.
+
+You can create a new JS Hook in the `assets/js/app.js` file:
+
+```javascript
+let Hooks = {}
+
+Hooks.Select = {
+  mounted() {
+    console.log("Mounted on", this.el)
+  }
+}
+
+let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}, hooks: Hooks})
+```
+
+This hook is very simple for now. We just log a message when the hook is mounted. You can now add the `phx-hook="Select"` attribute to the select component in the `lib/phoenix_liveview_select_web/live/components/select.ex` file:
+
+```elixir
+<div phx-feedback-for={@name} phx-hook="Select" id={@id}>
+```
+
+Be sure to add `phx-hook="Select"` to the top level div of the select component.
+
+In your browser, you should now see the message "Mounted on" in the console. This means that the hook is correctly mounted on the select component.
+
+### Opening and closing the select menu
+
+The first thing we want to do is to open the select menu when the user clicks on the input. We can add an event listener to the input in the `mounted` function:
+
+```javascript
+Hooks.Select = {
+  mounted() {
+    // Target the required dom elements
+    this.selectMenu = this.el.querySelector(`#${this.el.id}_select`)
+    this.textInput = this.el.querySelector(`#${this.el.id}_input`)
+
+    // Initialize internal state
+    this.isOpen = false
+
+    // State transformation functions
+    this.close = () => {
+      this.isOpen = false
+      this.selectMenu.classList.add("hidden")
+    }
+
+    this.open = () => {
+      this.isOpen = true
+      this.selectMenu.classList.remove("hidden")
+    }
+
+    // Event listeners
+    this.textInput.addEventListener("focus", this.open)
+
+    this.textInput.addEventListener("blur", this.close)
+  },
+}
+```
+
+Here is what we did:
+- We target the select menu and the text input using the `querySelector` method on our root element: `this.el`,
+- We initialize an internal state `isOpen` to keep track of the select menu state (we'll need this later),
+- We define two functions `open` and `close` to open and close the select menu and update the `isOpen` state,
+- We add event listeners to the text input to open the select menu when the input is focused and close it when the input is blurred.
+
+Here we use the focus and blur events to not only open or close the menu when the user click the input but also when the user focuses the input using tab. The blur event will be triggered when the user focuses another element: clicking outside our input or pressing tab.
+
+Now, you should be able to open or close your component by clicking on the input.
+
+We can already implements basic keyboard navivation. To keep things organized in your `mounted` function, you should insert the next code snippets in the correspoding sections (initialize internal state, state transformation functions, event listeners).
+
+### Keyboard navigation
+
+To add keyboard navigation, we need to store the active option index and update it when the user uses the arrow keys. We can add the following code to the `mounted` function:
+
+```javascript
+// Initialize internal state
+// ...
+this.activeOptionIndex = -1
+
+// State transformation functions
+// ...
+this.setActiveElementIndex = (index) => {      
+  const optionElements = this.selectMenu.querySelectorAll("[data-id]")
+
+  if (optionElements[this.activeOptionIndex]) (
+    optionElements[this.activeOptionIndex].classList.remove("bg-gray-200")
+  )
+
+  if (index < 0) {
+    this.activeOptionIndex = optionElements.length - 1
+  } else if (index >= optionElements.length) {
+    this.activeOptionIndex = 0
+  } else {
+    this.activeOptionIndex = index
+  }
+  optionElements[this.activeOptionIndex].classList.add("bg-gray-200")
+}
+
+// Event listeners
+// ...
+this.textInput.addEventListener("keydown", (e) => {
+  e.stopPropagation()
+
+  if (e.key === "Escape") {
+    this.close()
+  } else if (e.key === "ArrowDown") {
+    this.setActiveElementIndex(this.activeOptionIndex + 1)
+  } else if (e.key === "ArrowUp") {
+    this.setActiveElementIndex(this.activeOptionIndex - 1)
+  } else if (e.key === "Enter" && this.isOpen) {
+    if (this.activeOptionIndex >= 0) {
+      const activeOption = this.selectMenu.querySelectorAll("[data-id]")[this.activeOptionIndex]
+      this.onItemSelect({ target: activeOption })
+    }
+  } else if (!this.isOpen) {
+    this.open()
+  }
+})
+```
+
+Great, so we have a basic keyboard navigation system. When the user presses the arrow keys, we update the active option index and highlight the corresponding option. We also close the select menu when the user presses the escape key.
+
+### Selecting an option
+
+Now we need to select the active option when the user presses the enter key or click an option.
+
+We can add the following code to the `mounted` function:
+
+```javascript
+// Initialize internal state
+// ...
+this.selected = {value: this.valueInput.value, text: this.textInput.value}
+
+// State transformation functions
+// ...
+this.onItemSelect = (e) => {
+  // Get value and text from data-* attributes
+  this.selected = {value: e.target.dataset.id, text: e.target.dataset.text}
+
+  // Display the selected option in the input
+  this.textInput.value = this.selected.text
+
+  // Update the hidden input value and dispatch a change event
+  this.valueInput.value = this.selected.value
+  this.valueInput.dispatchEvent(new Event("change", { bubbles: true }))
+
+  this.close()
+}
+
+// Event listeners
+// ...
+this.selectMenu.querySelectorAll("[data-id]").forEach((option) => {
+  option.addEventListener("mousedown", this.onItemSelect)
+})
+```
+
+Here is what we did:
+- We initialize the `selected` state with the value and text of the selected option,
+- We define an `onItemSelect` function to update the selected option when the user select an option (this function is already called when the user presses the enter key),
+- We add an event listener to each option in the select menu to call the `onItemSelect` function when the user clicks an option.
+
+The `onItemSelect` function will update the selected option, close the select menu and dispatch a change event on the hidden input to notify the LiveView that the value has changed. Here we follow the [Phoenix LiveView documentation](https://hexdocs.pm/phoenix_live_view/form-bindings.html#triggering-phx-form-events-with-javascript) to trigger the change event on the hidden input.
+
+You should now be able to select an option using the keyboard or the mouse. The selected option will be displayed in the input and your LiveView form will be updated:
+1. The change event is triggered on the hidden input,
+2. The Phoenix form receives the new value and trigger the "validate" event,
+3. Your LiveView form assign is updated with the new value in the `handle_event` we implemented earlier:
+
+```elixir
+@impl true
+def handle_event("validate", employee_params, socket) do
+  socket =
+    socket
+    |> assign(form: to_form(employee_params))
+
+  {:noreply, socket}
+end
+```
+
+4. The Select live component is re-rendered,
+5. The JS Hook's `updated` method is called (we don't have one yet).
+
+Great! Now we can implements our autocomplete feature.
+
+### Make it searchable
+
+
