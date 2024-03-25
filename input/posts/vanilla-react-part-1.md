@@ -3,6 +3,7 @@ title: "Vanilla React Part 1: Server-side rendering"
 description: "In this article, we will see how to create a basic React application with server-side rendering."
 date: 2023-02-13
 layout: post
+meta_type: article
 tags: posts
 keywords: react, javascript, server-side rendering, ssr
 ---

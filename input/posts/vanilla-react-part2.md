@@ -3,6 +3,7 @@ title: "Vanilla React Part 2: Routing"
 description: "In this article, we will see how to create a basic React application with routing."
 date: 2023-03-08
 layout: post
+meta_type: article
 tags: posts
 keywords: react, javascript, frontend, routing, react-router
 ---

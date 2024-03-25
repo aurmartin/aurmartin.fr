@@ -3,6 +3,7 @@ title: "(draft) Buidling a Select component using Phoenix LiveView"
 description: "In this post, we will build a Select component using Phoenix LiveView."
 date: 2024-03-19
 layout: post
+meta_type: article
 tags: posts
 keywords: phoenix, liveview, select, component, elixir, erlang, web, development, programming, software, engineering, javascript, html, css, frontend, backend, fullstack, web, developer, web, engineer, react, nodejs, postgresql
 ---
@@ -181,7 +182,7 @@ defmodule PhoenixLiveviewSelectWeb.Live.Components.Select do
             autocomplete="off"
             value={if @selected, do: @selected.name}
             class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
+              "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
               "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
               @errors == [] && "border-zinc-300 focus:border-zinc-400",
               @errors != [] && "border-rose-400 focus:border-rose-400"
