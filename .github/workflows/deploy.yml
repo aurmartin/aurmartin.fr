@@ -19,3 +19,14 @@ jobs:
         source: "_site"
         target: "/srv/aurmartin/www"
         strip_components: 1
+    - name: Cloudflare Cache Purge Action
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: https://api.cloudflare.com/client/v4/zones/bfd721ff421637d3d912b8d9ebedc22d/purge_cache
+        method: "POST"
+        customHeaders: |
+          {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer ${{ secrets.CLOUDFLARE_CACHE_KEY }}"
+          }
+        data: '{"purge_everything": true}'
