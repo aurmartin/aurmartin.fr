@@ -4,6 +4,9 @@ layout: base
 
 <header>
   <h1>{{ title }}</h1>
+  <p>
+    Published on {{ date | date: "%B %-d, %Y" }}
+  </p>
 </header>
 
 {{ content }}

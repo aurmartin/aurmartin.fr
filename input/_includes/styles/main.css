@@ -59,6 +59,8 @@
 
 html, body {
   height: 100%;
+  scrollbar-gutter: stable;
+  overflow: auto;
 }
 
 ul, ol {
@@ -76,10 +78,38 @@ a {
   padding: 0.75rem;
 }
 
+.page > header {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+
+.page > header > a {
+  text-decoration: none;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+  .page > header > a {
+    position: initial;
+    margin-bottom: 1rem;
+  }
+
+  .page > header {
+    flex-direction: column;
+  }
+}
+
 nav {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  margin: auto 0;
 }
 
 nav > a {
@@ -99,7 +129,7 @@ header {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 h1, h2, h3, h4, h5, h6 {

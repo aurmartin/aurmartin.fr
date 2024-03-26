@@ -2,6 +2,7 @@
 title: "Interactive Select component using Phoenix LiveView and vanilla JS Hook"
 description: "In this post, we will build a Select component using Phoenix LiveView. You will learn how to build custom components using JS Hooks."
 date: 2024-03-19
+updated: 2024-03-26
 layout: post
 meta_type: article
 tags: posts
@@ -24,7 +25,7 @@ To use our component, we will build a simple form to create a new employee objec
 
 Here is the final result we want to achieve:
 
-<img src="{{ '/images/phoenix-liveview-select/final-demo.gif' | url }}" style="max-width: 100%;" />
+<img src="{{ '/images/phoenix-liveview-select/final-demo.gif' | url }}" alt="A gif showing the final result of the select component." style="max-width: 100%;" />
 
 I will cover every step to build this component from scratch, starting from a newly generated Phoenix LiveView project. We will be using Phoenix LiveView 1.7 with TailwindCSS.
 
