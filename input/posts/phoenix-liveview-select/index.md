@@ -1,16 +1,18 @@
 ---
-title: "(draft) Buidling a Select component using Phoenix LiveView"
-description: "In this post, we will build a Select component using Phoenix LiveView."
+title: "Interactive Select component using Phoenix LiveView and vanilla JS Hook"
+description: "In this post, we will build a Select component using Phoenix LiveView. You will learn how to build custom components using JS Hooks."
 date: 2024-03-19
 layout: post
 meta_type: article
 tags: posts
-keywords: phoenix, liveview, select, component, elixir, erlang, web, development, programming, software, engineering, javascript, html, css, frontend, backend, fullstack, web, developer, web, engineer, react, nodejs, postgresql
+keywords: phoenix, liveview, select, dropdown, component, js-hook, hook, custom input, keyboard navigation, js hook rendering, livecomponent, liveview, elixir, erlang, web, development, programming, software, engineering, javascript, html, css, frontend, backend, fullstack, web, developer, web, engineer, react, nodejs, postgresql
 ---
 
 ## Introduction
 
-In this post, we will explore how to build a select input component using Phoenix LiveView. There are already a couple of articles on the web about this but none of them fitted my needs. I wanted to build a select component that you can plug in a LiveView form to replace a classic select input.
+In this post, we will learn how to build a select input component using Phoenix LiveView and a vanilla JS Hook. This is a solid introduction on how to implement custom and interactive components in Phoenix LiveView. You will also learn how to handle keyboard navigation, JS-to-LiveView communication, and how to fix re-rendering issues.
+
+There are already a couple of articles on the web about this but none of them fitted my needs. I wanted to build a select component that you can plug in a LiveView form to replace a classic select input.
 
 Here are the features I wanted to implement:
 - Custom option item rendering (including images),
@@ -22,9 +24,9 @@ To use our component, we will build a simple form to create a new employee objec
 
 Here is the final result we want to achieve:
 
-<img src="{{ '/images/phoenix-liveview-select/final-result.png' | url }}" style="max-width: 100%;" />
+<img src="{{ '/images/phoenix-liveview-select/final-demo.gif' | url }}" style="max-width: 100%;" />
 
-I will cover every steps to build this component from scratch, starting from a newly generated Phoenix LiveView project. We will be using Phoenix LiveView 1.7 with TailwindCSS.
+I will cover every step to build this component from scratch, starting from a newly generated Phoenix LiveView project. We will be using Phoenix LiveView 1.7 with TailwindCSS.
 
 ## Step 1: Project setup
 
@@ -70,7 +72,7 @@ end
 ```
 
 - The `search_countries/1` function will be used to filter the countries list based on the search query.
-- We also implements the `country_image/1` function to get the flag image of a country. We will use this image in our select.
+- We also implement the `country_image/1` function to get the flag image of a country. We will use this image in our select.
 
 ## Step 2: Building the create employee form
 
@@ -122,7 +124,7 @@ defmodule PhoenixLiveviewSelectWeb.EmployeeLive.Index do
 end
 ```
 
-For the moment we only have the name input field. We will add our select componenet later. You can then add this liveview to your router in the `lib/phoenix_liveview_select_web/router.ex` file:
+For the moment we only have the name input field. We will add our select component later. You can then add this liveview to your router in the `lib/phoenix_liveview_select_web/router.ex` file:
 
 ```elixir
 scope "/", PhoenixLiveviewSelectWeb do
@@ -146,7 +148,7 @@ To be flexible, a Select component typically uses two html inputs:
 - one hidden input to store the selected option's value,
 - one text input to display the selected option's text or the search query.
 
-For our coutries, each option will look like this:
+For our countries, each option will look like this:
 
 ```elixir
 %{value: "FR", text: "France"}
@@ -250,7 +252,7 @@ This component takes the following assigns:
 - `field`: the form field to bind the input value,
 - `errors`: the list of errors to display.
 
-The options list will contains elements like this:
+The options list will contain elements like this:
 
 ```elixir
 %{id: "FR", text: "France"}
@@ -387,7 +389,7 @@ Here we use the focus and blur events to not only open or close the menu when th
 
 Now, you should be able to open or close your component by clicking on the input.
 
-We can already implements basic keyboard navivation. To keep things organized in your `mounted` function, you should insert the next code snippets in the correspoding sections (initialize internal state, state transformation functions, event listeners).
+We can already implement basic keyboard navigation. To keep things organized in your `mounted` function, you should insert the next code snippets in the corresponding sections (initialize internal state, state transformation functions, event listeners).
 
 ### Keyboard navigation
 
@@ -501,8 +503,94 @@ end
 4. The Select live component is re-rendered,
 5. The JS Hook's `updated` method is called (we don't have one yet).
 
-Great! Now we can implements our autocomplete feature.
+Great! Now we can implement our autocomplete feature.
 
 ### Make it searchable
 
+To have a searchable select, we need to update the options list based on the user's search query. We can add a new event listener to the text input that will push an "autocomplete" event to the LiveView when the user types in the input. The LiveView will then update the options list based on the search query which will trigger a re-render of the Select component.
 
+Our LiveView could have multiple Select components so we need to differentiate the event source. The LiveView could pass an event name to the Select component that will be used to push the event to the LiveView.
+
+In your LiveView, you can add this assign to the select component:
+
+```elixir
+<.live_component
+  # ...
+  autocomplete="autocomplete_countries"
+>
+```
+
+And we can pass this assign to the JS Hook by adding the following attribute to the Select component root element:
+
+```elixir
+<div phx-feedback-for={@name} phx-hook="Select" autocomplete={@autocomplete} id={@id}>
+```
+
+Now we can add the following code to the `mounted` function of our JS Hook:
+
+```javascript
+// Event listeners
+// ...
+this.textInput.addEventListener("input", (e) => {
+  this.pushEvent(this.el.getAttribute("autocomplete"), { query: this.textInput.value })
+})
+```
+
+And we can handle this event in our LiveView with a new handle_event:
+
+```elixir
+def handle_event("autocomplete_countries", %{"query" => query}, socket) do
+  {:noreply, update_countries_options(socket, query)}
+end
+```
+
+Now, when the user types in the input, the LiveView will update the options list based on the search query and re-render the Select component. But we have some issues here with the re-rendering: the select menu is closed when the options list is updated.
+
+We will fix this issues in the next section!
+
+### Re-rendering caveats
+
+To fix the re-rendering issues, we need to add a new `updated` function to our JS Hook:
+
+```javascript
+Hooks.Select = {
+  mounted() {
+    // ...
+  },
+  updated() {
+    if (this.isOpen) {
+      this.selectMenu.classList.remove("hidden")
+    } else {
+      this.selectMenu.classList.add("hidden")
+    }
+
+    this.valueInput.value = this.selected.value
+
+    this.selectMenu.querySelectorAll("[data-id]").forEach((option) => {
+      option.addEventListener("mousedown", this.onItemSelect)
+    })
+  }
+}
+```
+
+This function ensure our dom is synced with the internal state of our component.
+
+We fix 3 issues here:
+- We keep the select menu open,
+- We update the hidden input value with the selected option value. We need this because Phoenix won't erase the value of an input as described in the [documentation](https://hexdocs.pm/phoenix_live_view/form-bindings.html#javascript-client-specifics),
+- We add the event listeners to the newly created options: when we search for a country, the options list is updated and we need to add the event listeners to the new options.
+
+## Conclusion
+
+Perfect! We have a fully functional select component. You can now search for a country, select an option using the keyboard or the mouse, and the selected option will be displayed in the input and your LiveView form will be updated.
+
+In this post we explored many areas of Phoenix LiveView development:
+- We built a new LiveView and a Phoenix Form,
+- We built a custom select component using a LiveComponent,
+- We used a JS Hook to handle user interactions,
+- We used events to communicate between the JS Hook and the LiveView,
+- We used the `updated` function to keep our component in sync with the dom.
+
+Thanks for reading! I hope you enjoyed this post! Feel free to explore my other [posts](/posts) and [projects](/) on this website.
+
+If you have any questions or feedback, feel free to reach out at [aurmartin@pm.me](mailto:aurmartin@pm.me).
