@@ -12,16 +12,21 @@
   text-decoration: none;
 }
 
+.posts-list a:hover {
+  color: inherit;
+}
+
 .posts-list li {
   color: var(--gray-200);
-  background-color: var(--gray-800);
-  border: 1px solid var(--gray-700);
+  background-color: var(--gray-900);
+  border: 2px solid var(--gray-700);
   padding: 0.5rem;
   cursor: pointer;
 }
 
 .posts-list li:hover {
   border-color: var(--gray-500);
+  background-color: var(--gray-800);
 }
 
 .posts-list h3 {
@@ -33,7 +38,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.9em;
-  color: var(--gray-300);
+  color: var(--gray-400);
   font-size: 0.8rem;
 }
 

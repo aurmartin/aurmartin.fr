@@ -7,7 +7,7 @@
     "dev:11ty": "npx @11ty/eleventy --serve",
     "dev:css": "esbuild input/_includes/styles/main.css --bundle --loader:.ttf=file --outfile=_site/main.css --watch --sourcemap",
     "build:11ty": "eleventy",
-    "build:css": "esbuild input/_includes/styles/main.css --bundle --outfile=_site/main.css --minify",
+    "build:css": "esbuild input/_includes/styles/main.css --bundle --loader:.ttf=file --outfile=_site/main.css --minify",
     "dev": "npm-run-all -p dev:*",
     "build": "npm-run-all -p build:*"
   },

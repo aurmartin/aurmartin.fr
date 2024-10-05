@@ -28,6 +28,11 @@
   gap: 1rem;
 }
 
+.links > a {
+  border-bottom: none;
+}
+
 .links > a:hover {
-  color: var(--gray-100);
+  color: var(--accent);
+  border-bottom: none;
 }
