@@ -19,6 +19,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "input/robots.txt": "/robots.txt" })
   eleventyConfig.addPassthroughCopy({ "input/_includes/images": "/images" })
+  eleventyConfig.addPassthroughCopy({ "input/_includes/images/favicon.ico": "/favicon.ico" })
   eleventyConfig.addPassthroughCopy({ "input/_includes/fonts": "/fonts" })
 
   return {
