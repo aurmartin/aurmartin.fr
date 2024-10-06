@@ -5,8 +5,12 @@ date: 2023-04-10
 layout: post
 meta_type: article
 tags: posts
-keywords: 11ty, eleventy, esbuild, javascript, css, bundler, minifier, static website, static site generator
+keywords: 11ty, eleventy, esbuild, javascript, css, bundler, minifier, static website, static site generator, bundler
 ---
+
+<div class="alert alert-info">
+  Info: With the release of 11ty v3.0, you can directly use the included <a href="https://www.11ty.dev/docs/plugins/bundle/">plain text bundler</a>.
+</div>
 
 ## Introduction
 

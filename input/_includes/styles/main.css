@@ -84,6 +84,15 @@ a:hover {
   color: var(--accent);
 }
 
+.header-anchor {
+  border: none;
+  color: var(--gray-400);
+}
+
+.header-anchor:hover {
+  border: none;
+}
+
 .page {
   min-height: 100%;
   max-width: 850px;
@@ -188,4 +197,14 @@ code {
 
 pre > code {
   padding: 0;
+}
+
+.alert {
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.alert-info {
+  background-color: var(--gray-800);
+  border: 2px solid var(--gray-700);
 }
