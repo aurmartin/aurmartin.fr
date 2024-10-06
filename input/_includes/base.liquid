@@ -46,7 +46,17 @@
       sizes="96x96"
       href="{{ '/images/icon@3x.png' | url }}">
 
-    <link rel="stylesheet" href="{{ '/main.css' | url }}">
+    {% comment %} <link rel="stylesheet" href="{{ '/main.css' | url }}"> {% endcomment %}
+    <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+
+    {%- css %}
+      {% include "styles/normalize.css" %}
+      {% include "styles/main.css" %}
+      {% include "styles/home.css" %}
+      {% include "styles/posts.css" %}
+      {% include "styles/prism.css" %}
+    {% endcss %}
+
     <title>Aurélien Martin | {{ title }}</title>
   </head>
   <body>
