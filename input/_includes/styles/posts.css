@@ -10,6 +10,7 @@
 
 .posts-list a {
   text-decoration: none;
+  color: var(--gray-200);
 }
 
 .posts-list a:hover {

@@ -13,7 +13,7 @@
 
   --white: #FFFFFF;
 
-  --hue: 215;
+  --hue: 200;
 
   --gray-100: hsl(var(--hue), 25%, 98%);
   --gray-200: hsl(var(--hue), 25%, 85%);
@@ -26,7 +26,11 @@
   --gray-900: hsl(var(--hue), 35%, 12%);
   --gray-950: hsl(var(--hue), 39%, 9%);
 
-  --accent: hsl(var(--hue), 60%, 60%);
+  --accent-hue: 41;
+  --accent: hsl(var(--accent-hue), 90%, 60%);
+  --accent-light: hsl(var(--accent-hue), 60%, 70%);
+  --accent-dark: hsl(var(--accent-hue), 90%, 60%);
+  /* --accent: hsl(var(--hue), 60%, 60%); */
 
   font-family: OpenSans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
@@ -74,14 +78,14 @@ ul, ol {
 }
 
 a {
-  color: inherit;
+  color: var(--accent-light);
   text-decoration: none;
-  border-bottom: 2px solid var(--gray-400);
+  border-bottom: 2px solid var(--accent-light);
 }
 
 a:hover {
-  border-bottom: 2px solid var(--accent);
-  color: var(--accent);
+  border-bottom: 2px solid var(--accent-dark);
+  color: var(--accent-dark);
 }
 
 .header-anchor {
@@ -114,6 +118,16 @@ a:hover {
   position: absolute;
   left: 0;
   font-weight: bold;
+}
+
+.cat {
+  width: 60px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  position: fixed;
+
+  transition: transform 1s ease-in-out;
 }
 
 @media screen and (max-width: 600px) {

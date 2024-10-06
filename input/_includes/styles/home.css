@@ -1,9 +1,13 @@
-.home-title > h1 {
-  font-size: 2.5rem;
+.home-title {
+  margin-bottom: 1rem;
 }
 
-.home-title > h2 {
-  font-size: 1.5rem;
+.home-title h1 {
+  font-size: 2rem;
+}
+
+.home-title h2 {
+  font-size: 1.2rem;
   font-weight: normal;
   max-width: 600px;
   text-align: center;
@@ -12,11 +16,11 @@
 }
 
 @media (max-width: 768px) {
-  .home-title > h1 {
+  .home-title h1 {
     font-size: 2rem;
     line-height: 3rem;
   }
-  .home-title > h2 {
+  .home-title h2 {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
@@ -24,6 +28,7 @@
 
 .links {
   display: flex;
+  justify-content: center;
   color: var(--gray-200);
   gap: 1rem;
 }
@@ -35,4 +40,14 @@
 .links > a:hover {
   color: var(--accent);
   border-bottom: none;
+}
+
+.header-img-container {
+  width: 100%;
+}
+
+.header-img {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 1rem auto;
 }

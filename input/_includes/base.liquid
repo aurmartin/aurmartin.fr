@@ -67,11 +67,24 @@
           <a href="/">HOME</a>
           <a href="/posts">BLOG</a>
         </nav>
+        <img class="cat" src="{{ '/images/cat.svg' | url }}" />
       </header>
 
       <main>
         {{ content }}
       </main>
     </div>
+
+    <script>
+      const cat = document.querySelector(".cat");
+      function animateCat() {
+        if (cat.style.transform === "rotate(90deg)") {
+          cat.style.transform = "rotate(0deg)";
+        } else {
+          cat.style.transform = "rotate(90deg)";
+        }
+      }
+      setInterval(animateCat, 1500);
+    </script>
   </body>
 </html>
