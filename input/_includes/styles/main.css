@@ -121,6 +121,8 @@ a:hover {
 }
 
 .cat {
+  display: none; /* Hide cat for now */
+
   width: 60px;
   position: absolute;
   top: 10px;
