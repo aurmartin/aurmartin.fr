@@ -1,11 +1,12 @@
 ---
 title: "Vanilla React Part 1: Server-side rendering"
-description: "In this article, we will see how to create a basic React application with server-side rendering."
+description: "Discover how to build a React application from scratch using only the React library—no third-party tools or JSX. Learn server-side rendering, routing, data fetching, and more in this hands-on series."
 date: 2023-02-13
 layout: post
 meta_type: article
 tags: posts
 keywords: react, javascript, server-side rendering, ssr
+canonical: https://aurmartin.fr/posts/vanilla-react-part-1-server-side-rendering
 ---
 
 ## Vanllia React

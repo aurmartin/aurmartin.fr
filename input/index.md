@@ -1,8 +1,9 @@
 ---
 layout: home
-title: About Me
-description: I'm Aurélien Martin, a passionate software engineer with a focus on fullstack web development.
+title: Software Engineer | Code & Thoughts
+description: Software Engineer sharing insights through code, projects, and tech writing. Browse my portfolio to see my work in Full-Stack Web Development and read my latest tech articles.
 keywords: aurelien martin, aurelien, martin, aurelien martin, software engineer, software developer, fullstack developer, fullstack web developer, web developer, web engineer, react developer, react engineer, nodejs developer, nodejs engineer, javascript developer, javascript engineer, typescript developer, typescript engineer, postgresql developer, postgresql engineer, reactjs developer, reactjs engineer, nodejs developer, nodejs engineer, javascript developer, javascript engineer, typescript developer, typescript engineer, postgresql developer, postgresql engineer
+canonical: https://aurmartin.fr
 ---
 
 ## About Me

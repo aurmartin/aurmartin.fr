@@ -1,11 +1,12 @@
 ---
-title: "Use ESbuild with 11ty."
+title: "Use ESbuild with 11ty"
 description: "A guide on how to configure ESbuild with 11ty."
 date: 2023-04-10
 layout: post
 meta_type: article
 tags: posts
 keywords: 11ty, eleventy, esbuild, javascript, css, bundler, minifier, static website, static site generator, bundler
+canonical: https://aurmartin.fr/posts/11ty-esbuild
 ---
 
 <div class="alert alert-info">

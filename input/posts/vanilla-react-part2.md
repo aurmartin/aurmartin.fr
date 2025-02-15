@@ -1,11 +1,12 @@
 ---
 title: "Vanilla React Part 2: Routing"
-description: "In this article, we will see how to create a basic React application with routing."
+description: "Learn how to set up a basic routing system in React without relying on react-router. Explore server-side routing, dynamic routes, and page navigation—all implemented from scratch."
 date: 2023-03-08
 layout: post
 meta_type: article
 tags: posts
 keywords: react, javascript, frontend, routing, react-router
+canonical: https://aurmartin.fr/posts/vanilla-react-part-2-routing
 ---
 
 ## Introduction

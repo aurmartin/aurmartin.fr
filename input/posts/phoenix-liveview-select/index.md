@@ -1,12 +1,13 @@
 ---
 title: "Interactive Select component using Phoenix LiveView and vanilla JS Hook"
-description: "In this post, we will build a Select component using Phoenix LiveView. You will learn how to build custom components using JS Hooks."
+description: "Learn to build a custom select input component in Phoenix LiveView with a JS Hook. This guide covers autocomplete, keyboard navigation, and seamless Phoenix form integration. Perfect for interactive, reusable components!"
 date: 2024-03-19
 updated: 2024-03-26
 layout: post
 meta_type: article
 tags: posts
 keywords: phoenix, liveview, select, dropdown, component, js-hook, hook, custom input, keyboard navigation, js hook rendering, livecomponent, liveview, elixir, erlang, web, development, programming, software, engineering, javascript, html, css, frontend, backend, fullstack, web, developer, web, engineer, react, nodejs, postgresql
+canonical: https://aurmartin.fr/posts/phoenix-liveview-select
 ---
 
 ## Introduction
