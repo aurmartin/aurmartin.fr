@@ -6,7 +6,7 @@ layout: post
 meta_type: article
 tags: posts
 keywords: react, javascript, frontend, routing, react-router
-canonical: https://aurmartin.fr/posts/vanilla-react-part-2-routing/
+canonical: https://aurmartin.fr/posts/vanilla-react-part2/
 ---
 
 ## Introduction
@@ -26,7 +26,7 @@ Routing is the process of determining how an application responds to a client re
 
 Our frontend application should render different components depending on the current URL. For example, if the user is on the `/` path, we should render the `Home` component, if the user is on the `/posts` path, we should render the `Posts` component, and so on.
 
-Our client side source from [Part 1](../vanilla-react-part-1) actually look like this:
+Our client side source from [Part 1](../vanilla-react-part-1/) actually look like this:
 
 ```javascript
 import React from "react";

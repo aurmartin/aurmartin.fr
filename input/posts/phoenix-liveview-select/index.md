@@ -593,6 +593,6 @@ In this post we explored many areas of Phoenix LiveView development:
 - We used events to communicate between the JS Hook and the LiveView,
 - We used the `updated` function to keep our component in sync with the dom.
 
-Thanks for reading! I hope you enjoyed this post! Feel free to explore my other [posts](/posts) and [projects](/) on this website.
+Thanks for reading! I hope you enjoyed this post! Feel free to explore my other [posts](/posts/) and [projects](/) on this website.
 
 If you have any questions or feedback, feel free to reach out at [aurmartin@pm.me](mailto:aurmartin@pm.me).
