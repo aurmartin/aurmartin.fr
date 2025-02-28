@@ -17,6 +17,7 @@ Whether working independently or as part of a team, I am committed to delivering
 I have worked on a variety of hobbyist projects. You can find some of them on my [GitHub](https://github.com/aurmartin) profile.
 
 The most notable projects I have worked on are:
+- [Splitzy](https://github.com/aurmartin/splitzy): a mobile application to split expenses with friends using AI-powered receipt scanning built with React Native and Expo.
 - [ExTick](https://github.com/aurmartin/extick): a project management application I'm building to learn more about Phoenix LiveView. You can find the [live version of the app](https://extick.aurmartin.fr/).
 - [BetterVelovMap](https://github.com/aurmartin/bettervelov): a web application to visualize the availability of bikes and parking spots in the city of Lyon.
 - [Alien](https://github.com/aurmartin/Alien): a hobbyist operating system written in C and assembly.
