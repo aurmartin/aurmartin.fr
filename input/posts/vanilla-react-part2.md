@@ -6,7 +6,7 @@ layout: post
 meta_type: article
 tags: posts
 keywords: react, javascript, frontend, routing, react-router
-canonical: https://aurmartin.fr/posts/vanilla-react-part-2-routing
+canonical: https://aurmartin.fr/posts/vanilla-react-part-2-routing/
 ---
 
 ## Introduction

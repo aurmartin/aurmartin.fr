@@ -6,7 +6,7 @@ layout: post
 meta_type: article
 tags: posts
 keywords: react, javascript, server-side rendering, ssr
-canonical: https://aurmartin.fr/posts/vanilla-react-part-1-server-side-rendering
+canonical: https://aurmartin.fr/posts/vanilla-react-part-1-server-side-rendering/
 ---
 
 ## Vanllia React
@@ -209,7 +209,7 @@ If you start your server, you should see this error:
 ReferenceError: document is not defined
 ```
 
-What does this mean? This error is thrown because we are trying to use `document` in a Node.js environment. `document` is a global variable available in the browser, but not in Node.js. 
+What does this mean? This error is thrown because we are trying to use `document` in a Node.js environment. `document` is a global variable available in the browser, but not in Node.js.
 
 When importing our client:
 ```javascript

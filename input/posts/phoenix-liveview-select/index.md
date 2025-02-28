@@ -7,7 +7,7 @@ layout: post
 meta_type: article
 tags: posts
 keywords: phoenix, liveview, select, dropdown, component, js-hook, hook, custom input, keyboard navigation, js hook rendering, livecomponent, liveview, elixir, erlang, web, development, programming, software, engineering, javascript, html, css, frontend, backend, fullstack, web, developer, web, engineer, react, nodejs, postgresql
-canonical: https://aurmartin.fr/posts/phoenix-liveview-select
+canonical: https://aurmartin.fr/posts/phoenix-liveview-select/
 ---
 
 ## Introduction
@@ -262,7 +262,7 @@ The options list will contain elements like this:
 
 We add `id` attributes to both inputs and the select menu to be able to target them in our JS Hook.
 
-We can already add this component to our `EmployeeLive.Index` liveview. Update the render method using `.live_component` to render our select component: 
+We can already add this component to our `EmployeeLive.Index` liveview. Update the render method using `.live_component` to render our select component:
 
 ```elixir
 def render(assigns) do
@@ -291,7 +291,7 @@ def render(assigns) do
 end
 ```
 
-We pass the `@countries_options` assigns to the select component. This list will be generated in the `mount/3` callback using `update_countries_options/2` function. 
+We pass the `@countries_options` assigns to the select component. This list will be generated in the `mount/3` callback using `update_countries_options/2` function.
 
 ```elixir
 def mount(_params, _session, socket) do
@@ -404,7 +404,7 @@ this.activeOptionIndex = -1
 
 // State transformation functions
 // ...
-this.setActiveElementIndex = (index) => {      
+this.setActiveElementIndex = (index) => {
   const optionElements = this.selectMenu.querySelectorAll("[data-id]")
 
   if (optionElements[this.activeOptionIndex]) (

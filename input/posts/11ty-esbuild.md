@@ -6,7 +6,7 @@ layout: post
 meta_type: article
 tags: posts
 keywords: 11ty, eleventy, esbuild, javascript, css, bundler, minifier, static website, static site generator, bundler
-canonical: https://aurmartin.fr/posts/11ty-esbuild
+canonical: https://aurmartin.fr/posts/11ty-esbuild/
 ---
 
 <div class="alert alert-info">

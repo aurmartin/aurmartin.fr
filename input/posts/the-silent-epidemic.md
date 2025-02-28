@@ -6,7 +6,7 @@ layout: post
 meta_type: article
 tags: posts
 keywords: AI companions, loneliness epidemic, Replika, digital companionship, mental health, social isolation, artificial intelligence, emotional support, AI relationships, digital dependency, mental well-being, social connection, AI chatbots, modern loneliness, AI mental health, social anxiety, digital relationships, emotional AI, virtual companionship, technology and loneliness, Loneliness, Digital, Companionship, Mental health, Isolation, Depression, Artificial intelligence, Emotional support, Social connection, Virtual relationships, Dependency, Technology, Wellbeing, Communication, Psychology, Suicide prevention, Human interaction, Chatbots, Stigma, Therapy, Adaptation, Behavioral health, Connection, Support systems, Socialization
-canonical: https://aurmartin.fr/posts/the-silent-epidemic
+canonical: https://aurmartin.fr/posts/the-silent-epidemic/
 ---
 
 ## Introduction
